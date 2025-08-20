@@ -7,7 +7,7 @@ public class GenieWeenie {
 
         Scanner sc = new Scanner(System.in);
         String lineBorder = "____________________________________________________________";
-        String[] userText = new String[100];
+        Task[] userText = new Task[100];
         int counter = 0;
 
         System.out.println(lineBorder);
@@ -33,11 +33,37 @@ public class GenieWeenie {
                 }
                 System.out.println(lineBorder);
             }
+
+            else if (input.startsWith("mark ")) {
+                try {
+                    int index = Integer.parseInt(input.split(" ")[1]) - 1;
+                    userText[index].markTask();
+                    System.out.println("____________________________________________________________");
+                    System.out.println(" Nice! I've marked this task as done:");
+                    System.out.println("   " + userText[index]);
+                    System.out.println("____________________________________________________________");
+                } catch (Exception e) {
+                    System.out.println(" Invalid task number!");
+                }
+            }
+
+            else if (input.startsWith("unmark ")) {
+                try {
+                    int index = Integer.parseInt(input.split(" ")[1]) - 1;
+                    userText[index].unmarkTask();
+                    System.out.println("____________________________________________________________");
+                    System.out.println(" OK, I've marked this task as not done yet:");
+                    System.out.println("   " + userText[index]);
+                    System.out.println("____________________________________________________________");
+                } catch (Exception e) {
+                    System.out.println(" Invalid task number!");
+                }
+            }
             else {
                 System.out.println(lineBorder);
                 System.out.println("added: " + input); // add words
                 System.out.println(lineBorder);
-                userText[counter] = input;
+                userText[counter] = new Task(input);
                 counter++;
             }
         }
