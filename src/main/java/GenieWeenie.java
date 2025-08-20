@@ -59,6 +59,40 @@ public class GenieWeenie {
                     System.out.println(" Invalid task number!");
                 }
             }
+
+            else if (input.startsWith("todo ")) {
+                String desc = input.substring(5).trim();
+                Task t = new ToDo(desc);
+                userText[counter] = t;
+                counter++;
+                printAddTask(t, counter);
+            }
+
+            else if (input.startsWith("deadline ")) {
+                String[] parts = input.substring(9).split("/by", 2);
+                String desc = parts[0].trim();
+                String deadline = parts.length > 1 ? parts[1].trim() : "unspecified";
+                Task t = new Deadlines(desc, deadline);
+                userText[counter] = t;
+                counter++;
+                printAddTask(t, counter);
+            }
+
+            else if (input.startsWith("event ")) {
+                String[] parts = input.substring(6).split("/from|/to");
+                if (parts.length < 3) {
+                    System.out.println(" Invalid event format! Use: event <desc> /from <start> /to <end>");
+                    continue;
+                }
+                String desc = parts[0].trim();
+                String from = parts[1].trim();
+                String to = parts[2].trim();
+                Task t = new Events(desc, from, to);
+                userText[counter] = t;
+                counter++;
+                printAddTask(t, counter);
+            }
+
             else {
                 System.out.println(lineBorder);
                 System.out.println("added: " + input); // add words
@@ -69,5 +103,13 @@ public class GenieWeenie {
         }
 
         sc.close();
+    }
+
+    private static void printAddTask(Task t, int counter) {
+        System.out.println("____________________________________________________________");
+        System.out.println(" Got it. I've added this task:");
+        System.out.println("   " + t);
+        System.out.println(" Now you have " + counter + " tasks in the list.");
+        System.out.println("____________________________________________________________");
     }
 }
