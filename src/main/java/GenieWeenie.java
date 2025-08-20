@@ -60,17 +60,29 @@ public class GenieWeenie {
                 }
             }
 
-            else if (input.startsWith("todo ")) {
-                String desc = input.substring(5).trim();
-                Task t = new ToDo(desc);
-                userText[counter] = t;
-                counter++;
-                printAddTask(t, counter);
+            else if (input.startsWith("todo")) {
+                String desc = input.substring(4).trim();
+                if (!desc.isEmpty()) {
+                    Task t = new ToDo(desc);
+                    userText[counter] = t;
+                    counter++;
+                    printAddTask(t, counter);
+                } else {
+                    System.out.println(lineBorder);
+                    System.out.println("OOPS!!! The description of a todo cannot be empty."); // add words
+                    System.out.println(lineBorder);
+                }
             }
 
-            else if (input.startsWith("deadline ")) {
-                String[] parts = input.substring(9).split("/by", 2);
+            else if (input.startsWith("deadline")) {
+                String[] parts = input.substring(8).split("/by", 2);
                 String desc = parts[0].trim();
+                if (!desc.isEmpty()) {
+                    Task t = new ToDo(desc);
+                    userText[counter] = t;
+                    counter++;
+                    printAddTask(t, counter);
+                }
                 String deadline = parts.length > 1 ? parts[1].trim() : "unspecified";
                 Task t = new Deadlines(desc, deadline);
                 userText[counter] = t;
@@ -95,10 +107,10 @@ public class GenieWeenie {
 
             else {
                 System.out.println(lineBorder);
-                System.out.println("added: " + input); // add words
+                System.out.println("OOPS!!! I'm sorry, but I don't know what that means :-("); // add words
                 System.out.println(lineBorder);
-                userText[counter] = new Task(input);
-                counter++;
+//                userText[counter] = new Task(input);
+//                counter++;
             }
         }
 
