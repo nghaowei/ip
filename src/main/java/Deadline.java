@@ -1,12 +1,23 @@
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 public class Deadline extends Task {
     protected LocalDate by;
+    private static final LocalDate TODAY = LocalDate.now(); // constant for today
 
-    public Deadline(String desc, String by) {
+    public Deadline(String desc, String by) throws GenieweenieException {
         super(desc);
-        this.by = LocalDate.parse(by); // expects yyyy-mm-dd
+        try {
+            LocalDate parsedDate = LocalDate.parse(by); // expects yyyy-MM-dd
+            if (parsedDate.isBefore(TODAY)) {
+                throw new GenieweenieException("Deadline cannot be before today ("
+                        + TODAY.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ").");
+            }
+            this.by = parsedDate;
+        } catch (DateTimeParseException e) {
+            throw new GenieweenieException("Invalid date format. Use yyyy-MM-dd, e.g., 2025-08-28.");
+        }
     }
 
     @Override
@@ -19,10 +30,5 @@ public class Deadline extends Task {
     public String toSaveFormat() {
         return "D | " + (isDone() ? "1" : "0") + " | "
                 + getName() + " | " + by;
-    }
-
-    public static Deadline fromSaveFormat(String[] parts) {
-        // parts: [ "D", "0/1", description, yyyy-mm-dd ]
-        return new Deadline(parts[2], parts[3]);
     }
 }
