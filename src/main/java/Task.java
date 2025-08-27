@@ -31,7 +31,7 @@ public class Task {
             Task t;
             switch (type) {
                 case "T": t = new ToDo(desc); break;
-                case "D": t = new Deadlines(desc, parts[3]); break;
+                case "D": t = new Deadline(desc, parts[3]); break;
                 case "E": t = new Events(desc, parts[3], parts[4]); break;
                 default: return null;
             }
