@@ -99,7 +99,7 @@ public class GenieWeenie {
                 String desc = parts[0].trim();
                 String deadline = parts.length > 1 ? parts[1].trim() : "unspecified";
                 if (!desc.isEmpty()) {
-                    Task t = new Deadlines(desc, deadline);
+                    Task t = new Deadline(desc, deadline);
                     tasks.add(t);
                     printAddTask(t, tasks.size(), lineBorder);
                     storage.save(tasks);
