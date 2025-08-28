@@ -1,47 +1,61 @@
 package task;
 
-public class Task {
-    private boolean taskDone;
-    private String taskName;
 
-    public Task(String taskName) {
-        this.taskName = taskName;
-        this.taskDone = false;
+/**
+ * Represents a general Task with a description and completion status.
+ */
+public class Task {
+
+
+    /** The description of the task. */
+    protected String description;
+
+
+    /** Whether the task is done. */
+    protected boolean isDone;
+
+
+    /**
+     * Creates a new Task.
+     *
+     * @param description description of the task
+     */
+    public Task(String description) {
+        this.description = description;
+        this.isDone = false;
     }
 
-    public void markTask() { taskDone = true; }
-    public void unmarkTask() { taskDone = false; }
-    public boolean isDone() { return taskDone; }
-    public String getName() { return taskName; }
+
+    /**
+     * Marks the task as done.
+     */
+    public void markAsDone() {
+        this.isDone = true;
+    }
+
+
+    /**
+     * Returns status icon.
+     *
+     * @return "X" if done, otherwise a space
+     */
+    public String getStatusIcon() {
+        return (isDone ? "X" : " ");
+    }
+
+
+    /**
+     * Gets the description of the task.
+     *
+     * @return task description
+     */
+    public String getDescription() {
+        return description;
+    }
+
 
     @Override
     public String toString() {
-        String markSymbol = taskDone ? "X" : " ";
-        return ("[" + markSymbol + "] " + taskName);
-    }
-
-    public String toSaveFormat() {
-        return "T | " + (taskDone ? 1 : 0) + " | " + taskName;
-    }
-
-    public static Task fromSaveFormat(String line) {
-        try {
-            String[] parts = line.split(" \\| ");
-            String type = parts[0];
-            boolean done = parts[1].equals("1");
-            String desc = parts[2];
-            Task t;
-            switch (type) {
-                case "T": t = new Todo(desc); break;
-                case "D": t = new Deadline(desc, parts[3]); break;
-                case "E": t = new Events(desc, parts[3], parts[4]); break;
-                default: return null;
-            }
-            if (done) t.markTask();
-            return t;
-        } catch (Exception e) {
-            System.out.println("Corrupted line ignored: " + line);
-            return null;
-        }
+        return "[" + getStatusIcon() + "] " + description;
     }
 }

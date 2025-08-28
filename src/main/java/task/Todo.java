@@ -1,10 +1,21 @@
 package task;
 
+
+/**
+ * Represents a todo task with a description but no date/time qualifiers.
+ */
 public class Todo extends Task {
 
+
+    /**
+     * Creates a {@code Todo} with the given description.
+     *
+     * @param taskName the task description
+     */
     public Todo(String taskName) {
         super(taskName);
     }
+
 
     @Override
     public String toString() {
