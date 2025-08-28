@@ -1,4 +1,4 @@
-package task.TaskList;
+package task;
 
 import task.Task;
 
