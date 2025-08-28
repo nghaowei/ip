@@ -1,3 +1,7 @@
+package task;
+
+import exception.GenieweenieException;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -11,7 +15,7 @@ public class Deadline extends Task {
         try {
             LocalDate parsedDate = LocalDate.parse(by); // expects yyyy-MM-dd
             if (parsedDate.isBefore(TODAY)) {
-                throw new GenieweenieException("Deadline cannot be before today ("
+                throw new GenieweenieException("task.Deadline cannot be before today ("
                         + TODAY.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ").");
             }
             this.by = parsedDate;

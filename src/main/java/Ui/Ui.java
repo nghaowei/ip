@@ -1,3 +1,7 @@
+package Ui;
+
+import task.Task;
+
 import java.util.Scanner;
 
 public class Ui {
@@ -10,7 +14,7 @@ public class Ui {
 
     public void showWelcome() {
         showLine();
-        System.out.println(" Hello! I'm GenieWeenie");
+        System.out.println(" Hello! I'm app.GenieWeenie");
         System.out.println(" What can I do for you?");
         showLine();
     }

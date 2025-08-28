@@ -1,3 +1,14 @@
+package parser;
+
+import command.AddCommand;
+import command.Command;
+import command.ExitCommand;
+import exception.GenieweenieException;
+import task.Deadline;
+import task.Events;
+import task.Task;
+import task.ToDo;
+
 public class Parser {
 
     public static Command parse(String fullCommand) throws GenieweenieException {
@@ -10,7 +21,7 @@ public class Parser {
             return new AddCommand(t);
         } else if (trimmed.startsWith("deadline ")) {
             String[] parts = trimmed.substring(9).split("/by");
-            if (parts.length < 2) throw new GenieweenieException("Deadline format: deadline <desc> /by <date>");
+            if (parts.length < 2) throw new GenieweenieException("task.Deadline format: deadline <desc> /by <date>");
             Task t = new Deadline(parts[0].trim(), parts[1].trim());
             return new AddCommand(t);
         } else if (trimmed.startsWith("event ")) {
