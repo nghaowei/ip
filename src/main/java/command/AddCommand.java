@@ -1,34 +1,41 @@
 package command;
 
-import java.io.IOException;
-import task.Task;
+
 import task.TaskList;
+import task.Todo;
 import ui.Ui;
 import storage.Storage;
 import exception.GenieweenieException;
 
 
-public class AddCommand implements Command {
-    private Task task;
+/**
+ * Represents the add command.
+ */
+public class AddCommand extends Command {
 
-    public AddCommand(Task task) {
-        this.task = task;
+
+    private final String description;
+
+
+    /**
+     * Creates a new AddCommand.
+     *
+     * @param description task description
+     */
+    public AddCommand(String description) {
+        this.description = description;
     }
 
-    @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
-        tasks.add(task);
-        ui.showAddTask(task, tasks.size());
 
+    @Override
+    public void execute(TaskList tasks, Ui ui, Storage storage) throws GenieweenieException {
+        Todo todo = new Todo(description);
+        tasks.add(todo);
+        ui.showMessage("Got it. I've added this task: " + todo);
         try {
-            storage.save(tasks);
-        } catch (IOException e) {
-            ui.showError("Error saving tasks: " + e.getMessage());
+            storage.save(tasks.getTasks());
+        } catch (Exception e) {
+            throw new GenieweenieException("Failed to save task");
         }
-    }
-
-    @Override
-    public boolean isExit() {
-        return false;
     }
 }

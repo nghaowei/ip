@@ -1,17 +1,20 @@
 package ui;
-
-import task.Task;
-
-import java.util.Scanner;
-
+* Handles all user-facing messages and simple console I/O for the application.
+        */
 public class Ui {
 
-    private final String line = "____________________________________________________________";
 
+    /** Horizontal rule used to separate UI sections. */
+    private static final String LINE = "____________________________________________________________";
+
+
+    /** Prints a horizontal rule. */
     public void showLine() {
-        System.out.println(line);
+        System.out.println(LINE);
     }
 
+
+    /** Prints the welcome banner. */
     public void showWelcome() {
         showLine();
         System.out.println(" Hello! I'm app.GenieWeenie");
@@ -19,34 +22,57 @@ public class Ui {
         showLine();
     }
 
+
+    /** Prints the goodbye banner. */
     public void showGoodbye() {
-        System.out.println(line);
+        System.out.println(LINE);
         System.out.println("F-off. Hope to never see you again!");
-        System.out.println(line);
+        System.out.println(LINE);
     }
 
+
+    /**
+     * Prints the message indicating a task has been added.
+     *
+     * @param task the task that was added
+     * @param totalTasks the total number of tasks after addition
+     */
     public void showAddTask(Task task, int totalTasks) {
-        System.out.println(line);
+        System.out.println(LINE);
         System.out.println(" Got it. I've added this task:");
-        System.out.println("   " + task);
+        System.out.println(" " + task);
         System.out.println(" Now you have " + totalTasks + " tasks in the list.");
-        System.out.println(line);
+        System.out.println(LINE);
     }
 
+
+    /**
+     * Prints an error message boxed with a horizontal rule.
+     *
+     * @param message the error message to print
+     */
     public void showError(String message) {
-        System.out.println(line);
+        System.out.println(LINE);
         System.out.println("Error: " + message);
-        System.out.println(line);
+        System.out.println(LINE);
     }
 
+
+    /**
+     * Reads the next line from standard input.
+     *
+     * @return the line the user entered
+     */
     public String readCommand() {
         Scanner sc = new Scanner(System.in);
         return sc.nextLine();
     }
 
+
+    /** Prints an error indicating that save data could not be loaded. */
     public void showLoadingError() {
-        System.out.println(line);
+        System.out.println(LINE);
         System.out.println("Error loading tasks! Starting with an empty list.");
-        System.out.println(line);
+        System.out.println(LINE);
     }
 }

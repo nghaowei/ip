@@ -2,38 +2,74 @@ package task;
 
 import java.util.ArrayList;
 
+/**
+ * Represents a list of tasks.
+ * Provides operations to add, retrieve, delete, and inspect tasks.
+ */
 public class TaskList {
+
+    /** List storing the tasks. */
     private ArrayList<Task> tasks;
 
+    /**
+     * Creates an empty task list.
+     */
     public TaskList() {
         this.tasks = new ArrayList<>();
     }
 
+    /**
+     * Creates a task list initialized with an existing list of tasks.
+     *
+     * @param tasks the initial tasks
+     */
     public TaskList(ArrayList<Task> tasks) {
         this.tasks = tasks;
     }
 
-    /** Adds a task to the list. */
+    /**
+     * Adds a task to the list.
+     *
+     * @param task the task to add
+     */
     public void add(Task task) {
         tasks.add(task);
     }
 
-    /** Returns the task at a given index (0-based). */
+    /**
+     * Returns the task at the given index (0-based).
+     *
+     * @param index the index of the task
+     * @return the task at the index
+     */
     public Task getTask(int index) {
         return tasks.get(index);
     }
 
-    /** Removes and returns a task at the given index. */
+    /**
+     * Removes and returns the task at the given index.
+     *
+     * @param index the index of the task
+     * @return the removed task
+     */
     public Task deleteTask(int index) {
         return tasks.remove(index);
     }
 
-    /** Returns number of tasks in the list. */
+    /**
+     * Returns the number of tasks in the list.
+     *
+     * @return the number of tasks
+     */
     public int size() {
         return tasks.size();
     }
 
-    /** Returns the whole underlying list. */
+    /**
+     * Returns the underlying list of tasks.
+     *
+     * @return the list of tasks
+     */
     public ArrayList<Task> getTasks() {
         return tasks;
     }
