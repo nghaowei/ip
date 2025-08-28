@@ -1,3 +1,10 @@
+package storage;
+
+import exception.GenieweenieException;
+import parser.Parser;
+import task.Task;
+import task.TaskList.TaskList;
+
 import java.io.*;
 
 public class Storage {
@@ -7,13 +14,13 @@ public class Storage {
         this.filePath = filePath;
     }
 
-    // Load a TaskList instead of ArrayList
+    // Load a task.TaskList.task.TaskList instead of ArrayList
     public TaskList load() throws GenieweenieException {
         TaskList tasks = new TaskList();
         try {
             File f = new File(filePath);
             if (!f.exists()) {
-                return tasks; // empty TaskList if file doesn't exist
+                return tasks; // empty task.TaskList.task.TaskList if file doesn't exist
             }
             BufferedReader br = new BufferedReader(new FileReader(f));
             String line;
@@ -28,7 +35,7 @@ public class Storage {
         return tasks;
     }
 
-    // Save a TaskList
+    // Save a task.TaskList.task.TaskList
     public void save(TaskList tasks) throws IOException {
         FileWriter fw = new FileWriter(filePath);
         for (Task t : tasks.getTasks()) {
