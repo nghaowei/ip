@@ -32,7 +32,7 @@ public class Task {
             String desc = parts[2];
             Task t;
             switch (type) {
-                case "T": t = new ToDo(desc); break;
+                case "T": t = new Todo(desc); break;
                 case "D": t = new Deadline(desc, parts[3]); break;
                 case "E": t = new Events(desc, parts[3], parts[4]); break;
                 default: return null;

@@ -1,36 +1,39 @@
 package task;
 
-import task.Task;
-
 import java.util.ArrayList;
 
 public class TaskList {
-    private final ArrayList<Task> tasks;
+    private ArrayList<Task> tasks;
 
     public TaskList() {
-        tasks = new ArrayList<>();
+        this.tasks = new ArrayList<>();
     }
 
     public TaskList(ArrayList<Task> tasks) {
         this.tasks = tasks;
     }
 
-    public void add(Task t) {
-        tasks.add(t);
+    /** Adds a task to the list. */
+    public void add(Task task) {
+        tasks.add(task);
     }
 
-    public Task remove(int index) {
-        return tasks.remove(index);
-    }
-
-    public Task get(int index) {
+    /** Returns the task at a given index (0-based). */
+    public Task getTask(int index) {
         return tasks.get(index);
     }
 
+    /** Removes and returns a task at the given index. */
+    public Task deleteTask(int index) {
+        return tasks.remove(index);
+    }
+
+    /** Returns number of tasks in the list. */
     public int size() {
         return tasks.size();
     }
 
+    /** Returns the whole underlying list. */
     public ArrayList<Task> getTasks() {
         return tasks;
     }

@@ -7,7 +7,7 @@ import exception.GenieweenieException;
 import task.Deadline;
 import task.Events;
 import task.Task;
-import task.ToDo;
+import task.Todo;
 
 public class Parser {
 
@@ -17,7 +17,7 @@ public class Parser {
         if (trimmed.equalsIgnoreCase("bye")) {
             return new ExitCommand();
         } else if (trimmed.startsWith("todo ")) {
-            Task t = new ToDo(trimmed.substring(5));
+            Task t = new Todo(trimmed.substring(5));
             return new AddCommand(t);
         } else if (trimmed.startsWith("deadline ")) {
             String[] parts = trimmed.substring(9).split("/by");
@@ -44,7 +44,7 @@ public class Parser {
 
             switch (type) {
                 case "T":
-                    t = new ToDo(desc);
+                    t = new Todo(desc);
                     break;
                 case "D":
                     t = new Deadline(desc, parts[3]); // yyyy-mm-dd

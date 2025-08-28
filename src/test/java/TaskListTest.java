@@ -1,24 +1,24 @@
-package task;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
+import task.Task;
+import task.TaskList;
+import task.Todo;
 
 public class TaskListTest {
 
     @Test
-    public void addTask_sizeIncreases() {
+    public void add_and_getTask_success() {
         TaskList list = new TaskList();
-        Task t = new ToDo("do ip");
-        list.addTask(t);
-        assertEquals(1, list.size());
+        Task t = new Todo("Write JUnit test");
+        list.add(t);
+        assertEquals(t, list.getTask(0));
     }
 
     @Test
-    public void getTask_returnsCorrectTask() {
+    public void size_afterAddingTasks_success() {
         TaskList list = new TaskList();
-        Task t = new ToDo("do tp");
-        list.addTask(t);
-        assertEquals("do tp", list.getTask(0).getName());
+        Task t = new Todo("Write JUnit test");
+        list.add(t);
+        assertEquals(1, list.size());
     }
 }
