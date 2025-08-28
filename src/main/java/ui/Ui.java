@@ -1,4 +1,4 @@
-package Ui;
+package ui;
 
 import task.Task;
 
