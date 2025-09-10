@@ -9,14 +9,7 @@ import java.util.ArrayList;
 public class TaskList {
 
     /** List storing the tasks. */
-    private ArrayList<Task> tasks;
-
-    /**
-     * Creates an empty task list.
-     */
-    public TaskList() {
-        this.tasks = new ArrayList<>();
-    }
+    private final ArrayList<Task> tasks;
 
     /**
      * Creates a task list initialized with an existing list of tasks.
@@ -26,6 +19,19 @@ public class TaskList {
     public TaskList(ArrayList<Task> tasks) {
         this.tasks = tasks;
     }
+
+    /**
+     * Creates an empty task list.
+     */
+    public TaskList() {
+        this.tasks = new ArrayList<>();
+    }
+
+    public void addTask(Task task) {
+        tasks.add(task);
+    }
+
+
 
     /**
      * Adds a task to the list.
@@ -43,6 +49,10 @@ public class TaskList {
      * @return the task at the index
      */
     public Task getTask(int index) {
+        return tasks.get(index);
+    }
+
+    public Task get(int index) {
         return tasks.get(index);
     }
 
@@ -72,5 +82,20 @@ public class TaskList {
      */
     public ArrayList<Task> getTasks() {
         return tasks;
+    }
+    /**
+     * Finds and returns a list of tasks that contain the given keyword.
+     *
+     * @param keyword The keyword to search for.
+     * @return A list of matching tasks.
+     */
+    public ArrayList<Task> findTasks(String keyword) {
+        ArrayList<Task> matching = new ArrayList<>();
+        for (Task task : tasks) {
+            if (task.getDescription().contains(keyword)) {
+                matching.add(task);
+            }
+        }
+        return matching;
     }
 }

@@ -1,7 +1,10 @@
 package parser;
 
 
-import command.*;
+import command.AddCommand;
+import command.Command;
+import command.ExitCommand;
+import command.FindCommand;
 import exception.GenieweenieException;
 
 
@@ -24,12 +27,17 @@ public class Parser {
 
 
         switch (commandWord) {
-            case "bye":
-                return new ExitCommand();
-            case "add":
-                return new AddCommand(parts[1]);
-            default:
-                throw new GenieweenieException("Unknown command: " + commandWord);
+        case "bye":
+            return new ExitCommand();
+        case "add":
+            return new AddCommand(parts[1]);
+        case "find":
+            if (parts.length < 2) {
+                throw new GenieweenieException("☹ OOPS!!! The keyword for find cannot be empty.");
+            }
+            return new FindCommand(parts[1]);
+        default:
+            throw new GenieweenieException("Unknown command: " + commandWord);
         }
     }
 }

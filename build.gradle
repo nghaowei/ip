@@ -1,10 +1,13 @@
 plugins {
     id 'java'
     id 'application'
+    id 'checkstyle'
+    id 'com.github.johnrengelman.shadow' version '7.1.2'
+    id 'org.openjfx.javafxplugin' version '0.1.0'
 }
 
 application {
-    mainClass.set("app.GenieWeenie")
+    mainClass.set("ui.Launcher")
 }
 
 tasks.named('run') {
@@ -16,8 +19,26 @@ repositories {
 }
 
 dependencies {
-    testImplementation 'org.junit.jupiter:junit-jupiter:5.9.3'
+    String javaFxVersion = '21.0.2'
+
+    // JUnit
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.10.0'
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.10.0'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+    // JavaFX cross-platform dependencies
+    implementation group: 'org.openjfx', name: 'javafx-base', version: javaFxVersion, classifier: 'win'
+    implementation group: 'org.openjfx', name: 'javafx-base', version: javaFxVersion, classifier: 'mac'
+    implementation group: 'org.openjfx', name: 'javafx-base', version: javaFxVersion, classifier: 'linux'
+    implementation group: 'org.openjfx', name: 'javafx-controls', version: javaFxVersion, classifier: 'win'
+    implementation group: 'org.openjfx', name: 'javafx-controls', version: javaFxVersion, classifier: 'mac'
+    implementation group: 'org.openjfx', name: 'javafx-controls', version: javaFxVersion, classifier: 'linux'
+    implementation group: 'org.openjfx', name: 'javafx-fxml', version: javaFxVersion, classifier: 'win'
+    implementation group: 'org.openjfx', name: 'javafx-fxml', version: javaFxVersion, classifier: 'mac'
+    implementation group: 'org.openjfx', name: 'javafx-fxml', version: javaFxVersion, classifier: 'linux'
+    implementation group: 'org.openjfx', name: 'javafx-graphics', version: javaFxVersion, classifier: 'win'
+    implementation group: 'org.openjfx', name: 'javafx-graphics', version: javaFxVersion, classifier: 'mac'
+    implementation group: 'org.openjfx', name: 'javafx-graphics', version: javaFxVersion, classifier: 'linux'
 }
 
 
@@ -46,4 +67,14 @@ test {
         showStackTraces true
         showStandardStreams = false
     }
+}
+
+checkstyle {
+    toolVersion = '11.0.1'
+}
+
+shadowJar {
+    archiveBaseName.set("GenieWeenie")
+    archiveClassifier.set("") // removes the -all suffix
+    archiveVersion.set("")    // removes version from filename
 }

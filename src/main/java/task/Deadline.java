@@ -1,5 +1,10 @@
 package task;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
+import exception.GenieweenieException;
 
 /**
  * Represents a Deadline task with a due date.
@@ -7,7 +12,7 @@ package task;
 public class Deadline extends Task {
 
 
-    private final String by;
+    private final LocalDate by;
 
 
     /**
@@ -16,14 +21,19 @@ public class Deadline extends Task {
      * @param description description of the deadline
      * @param by due date
      */
-    public Deadline(String description, String by) {
+    public Deadline(String description, String by) throws GenieweenieException {
         super(description);
-        this.by = by;
+        try {
+            this.by = LocalDate.parse(by); // expects yyyy-MM-dd format
+        } catch (DateTimeParseException e) {
+            throw new GenieweenieException("☹ OOPS!!! Invalid date format: " + by);
+        }
     }
 
 
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + by + ")";
+        return "[D]" + super.toString() + " (by: "
+                + by.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
     }
 }

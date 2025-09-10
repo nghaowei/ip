@@ -1,6 +1,5 @@
 package task;
 
-
 /**
  * Represents an Event task with a start and end time.
  */
@@ -23,7 +22,6 @@ public class Events extends Task {
         this.start = start;
         this.end = end;
     }
-
 
     @Override
     public String toString() {

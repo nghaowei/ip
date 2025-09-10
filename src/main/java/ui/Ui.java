@@ -1,6 +1,12 @@
 package ui;
-* Handles all user-facing messages and simple console I/O for the application.
-        */
+
+import java.util.Scanner;
+
+import task.Task;
+
+/**
+*  Handles all user-facing messages and simple console I/O for the application.
+ */
 public class Ui {
 
 
@@ -15,19 +21,21 @@ public class Ui {
 
 
     /** Prints the welcome banner. */
-    public void showWelcome() {
+    public String showWelcome() {
         showLine();
         System.out.println(" Hello! I'm app.GenieWeenie");
         System.out.println(" What can I do for you?");
         showLine();
+        return "Hello! I'm app.GenieWeenie\n What can I do for you?";
     }
 
 
     /** Prints the goodbye banner. */
-    public void showGoodbye() {
+    public String showGoodbye() {
         System.out.println(LINE);
         System.out.println("F-off. Hope to never see you again!");
         System.out.println(LINE);
+        return "F-off. Hope to never see you again!";
     }
 
 
@@ -37,12 +45,13 @@ public class Ui {
      * @param task the task that was added
      * @param totalTasks the total number of tasks after addition
      */
-    public void showAddTask(Task task, int totalTasks) {
+    public String showAddTask(Task task, int totalTasks) {
         System.out.println(LINE);
         System.out.println(" Got it. I've added this task:");
         System.out.println(" " + task);
         System.out.println(" Now you have " + totalTasks + " tasks in the list.");
         System.out.println(LINE);
+        return " Got it. I've added this task:\n " + task + " Now you have \n" + totalTasks + " tasks in the list.";
     }
 
 
@@ -51,10 +60,18 @@ public class Ui {
      *
      * @param message the error message to print
      */
-    public void showError(String message) {
+    public String showError(String message) {
         System.out.println(LINE);
         System.out.println("Error: " + message);
         System.out.println(LINE);
+        return "Error: " + message;
+    }
+
+    /**
+     * Shows message to user
+     */
+    public String showMessage(String message) {
+        return message;
     }
 
 
@@ -70,9 +87,10 @@ public class Ui {
 
 
     /** Prints an error indicating that save data could not be loaded. */
-    public void showLoadingError() {
+    public String showLoadingError() {
         System.out.println(LINE);
         System.out.println("Error loading tasks! Starting with an empty list.");
         System.out.println(LINE);
+        return "Error loading tasks! Starting with an empty list.";
     }
 }
