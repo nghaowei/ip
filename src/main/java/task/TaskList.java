@@ -1,6 +1,9 @@
 package task;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Represents a list of tasks.
@@ -97,5 +100,13 @@ public class TaskList {
             }
         }
         return matching;
+    }
+
+    // LOL STREAMS!
+    public List<Task> getTasksWithinPeriod(LocalDate start, LocalDate end) {
+        return tasks.stream()
+                .filter(t -> t.getStartDate() != null && t.getEndDate() != null)
+                .filter(t -> !t.getStartDate().isAfter(end) && !t.getEndDate().isBefore(start))
+                .collect(Collectors.toList());
     }
 }
