@@ -42,20 +42,19 @@ public class Storage {
 
         while (sc.hasNextLine()) {
             String[] parts = sc.nextLine().split(" \\| "); // note: split by " | " properly
+            assert parts.length >= 3 : "Corrupted line in save file: not enough parts";
+
             Task t;
             switch (parts[0]) {
             case "T":
                 t = new Todo(parts[2]);
                 break;
             case "D":
-                try {
-                    t = new Deadline(parts[2], parts[3]);
-                } catch (GenieweenieException e) {
-                    System.out.println("Skipping invalid deadline: " + e.getMessage());
-                    continue;
-                }
+                assert parts.length >= 4 : "Deadline entry missing fields";
+                t = new Deadline(parts[2], parts[3]);
                 break;
             case "E":
+                assert parts.length >= 5 : "Event entry missing fields";
                 t = new Events(parts[2], parts[3], parts[4]);
                 break;
             default:
@@ -67,6 +66,7 @@ public class Storage {
             tasks[index++] = t;
         }
         sc.close();
+        assert index <= tasks.length : "Task array overflowed!";
         return tasks;
     }
 

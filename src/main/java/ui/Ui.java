@@ -46,6 +46,9 @@ public class Ui {
      * @param totalTasks the total number of tasks after addition
      */
     public String showAddTask(Task task, int totalTasks) {
+        assert task != null : "Task should not be null when displaying add message";
+        assert totalTasks >= 0 : "Total tasks cannot be negative";
+
         System.out.println(LINE);
         System.out.println(" Got it. I've added this task:");
         System.out.println(" " + task);
@@ -61,6 +64,8 @@ public class Ui {
      * @param message the error message to print
      */
     public String showError(String message) {
+        assert message != null : "Error message should not be null";
+
         System.out.println(LINE);
         System.out.println("Error: " + message);
         System.out.println(LINE);
