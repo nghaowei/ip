@@ -39,6 +39,7 @@ public class TaskList {
      * @param task the task to add
      */
     public void add(Task task) {
+        assert task != null : "Task to add should not be null";
         tasks.add(task);
     }
 
@@ -49,6 +50,7 @@ public class TaskList {
      * @return the task at the index
      */
     public Task getTask(int index) {
+        assert index >= 0 && index < tasks.size() : "Index " + index + " is invalid";
         return tasks.get(index);
     }
 
@@ -63,6 +65,7 @@ public class TaskList {
      * @return the removed task
      */
     public Task deleteTask(int index) {
+        assert index >= 0 && index < tasks.size() : "Index " + index + " is invalid for delete";
         return tasks.remove(index);
     }
 
@@ -90,6 +93,7 @@ public class TaskList {
      * @return A list of matching tasks.
      */
     public ArrayList<Task> findTasks(String keyword) {
+        assert keyword != null && !keyword.isEmpty() : "Keyword should not be null or empty";
         ArrayList<Task> matching = new ArrayList<>();
         for (Task task : tasks) {
             if (task.getDescription().contains(keyword)) {
