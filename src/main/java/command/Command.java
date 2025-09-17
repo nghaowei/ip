@@ -12,6 +12,8 @@ public abstract class Command {
 
     protected String response; // stores the output of the command
 
+    public abstract void execute(TaskList tasks);
+
     /**
      * Executes the command.
      *

@@ -33,6 +33,12 @@ public class Task {
         this.isDone = true;
     }
 
+    /**
+     * Marks this task as not done.
+     */
+    public void markAsNotDone() {
+        this.isDone = false;
+    }
 
     /**
      * Returns status icon.

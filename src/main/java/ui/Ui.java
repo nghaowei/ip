@@ -23,19 +23,19 @@ public class Ui {
     /** Prints the welcome banner. */
     public String showWelcome() {
         showLine();
-        System.out.println(" Hello! I'm app.GenieWeenie");
+        System.out.println(" Hello! I'm GenieWeenie");
         System.out.println(" What can I do for you?");
         showLine();
-        return "Hello! I'm app.GenieWeenie\n What can I do for you?";
+        return "Hello! I'm GenieWeenie\n What can I do for you?";
     }
 
 
     /** Prints the goodbye banner. */
     public String showGoodbye() {
         System.out.println(LINE);
-        System.out.println("F-off. Hope to never see you again!");
+        System.out.println("Goodbye!");
         System.out.println(LINE);
-        return "F-off. Hope to never see you again!";
+        return "Goodbye";
     }
 
 

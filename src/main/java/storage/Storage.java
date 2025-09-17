@@ -37,7 +37,7 @@ public class Storage {
 
 
         Scanner sc = new Scanner(file);
-        Task[] tasks = new Task[100];
+        Task[] tasks = new Task[0];
         int index = 0;
 
         while (sc.hasNextLine()) {

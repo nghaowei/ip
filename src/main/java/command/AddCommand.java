@@ -9,15 +9,12 @@ import task.TaskList;
 import task.Todo;
 import ui.Ui;
 
-
 /**
  * Represents the add command.
  */
 public class AddCommand extends Command {
 
-
     private final String description;
-
 
     /**
      * Creates a new AddCommand.
@@ -28,6 +25,10 @@ public class AddCommand extends Command {
         this.description = description;
     }
 
+    @Override
+    public void execute(TaskList tasks) {
+
+    }
 
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws GenieweenieException {
@@ -43,18 +44,18 @@ public class AddCommand extends Command {
         } else if (description.startsWith("deadline ")) {
             // Example: "deadline submit report /by 2025-09-05"
             String[] parts = description.substring(9).split(" /by ", 2);
-            if (parts.length < 2 || parts[0].isEmpty() || parts[1].isEmpty()) {
+            if (parts.length < 2 || parts[0].trim().isEmpty() || parts[1].trim().isEmpty()) {
                 throw new GenieweenieException("Deadline must have a description and /by date!");
             }
             task = new Deadline(parts[0].trim(), parts[1].trim());
 
         } else if (description.startsWith("event ")) {
             // Example: "event team meeting /at 2025-09-05 14:00"
-            String[] parts = description.substring(6).split(" /at ", 2);
-            if (parts.length < 2 || parts[0].isEmpty() || parts[1].isEmpty()) {
-                throw new GenieweenieException("Event must have a description and /at date/time!");
+            String[] parts = description.substring(6).split(" /from | /to ", 3);
+            if (parts.length < 3 || parts[0].trim().isEmpty() || parts[1].trim().isEmpty() || parts[2].trim().isEmpty()) {
+                throw new GenieweenieException("Event must have a description, /from start and /to end time!");
             }
-            task = new Events(description, parts[0].trim(), parts[1].trim());
+            task = new Events(parts[0].trim(), parts[1].trim(), parts[2].trim());
 
         } else {
             throw new GenieweenieException("Unknown task type! Use todo, deadline, or event.");
@@ -62,7 +63,8 @@ public class AddCommand extends Command {
 
         // Add to task list
         tasks.add(task);
-        // Save message in response
+
+        // Generate response once
         response = ui.showAddTask(task, tasks.size());
 
         // Save tasks
@@ -73,6 +75,6 @@ public class AddCommand extends Command {
         }
 
         // Return message for GUI & CLI
-        return ui.showAddTask(task, tasks.size());
+        return response;
     }
 }
