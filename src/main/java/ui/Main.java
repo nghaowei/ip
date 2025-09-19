@@ -21,7 +21,7 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) {
         try {
-            stage.setTitle("GenieWeenie Chat");
+            stage.setTitle("GenieWeenie Task Manager");
             Image icon = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/genie.jpg")));
             stage.getIcons().add(icon);
             stage.setMinHeight(220);
