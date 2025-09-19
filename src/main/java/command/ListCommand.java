@@ -8,6 +8,9 @@ import task.Task;
 import task.TaskList;
 import ui.Ui;
 
+/**
+ * Represents a command to list all tasks in the task list.
+ */
 public class ListCommand extends Command {
 
     @Override
@@ -24,7 +27,7 @@ public class ListCommand extends Command {
             StringBuilder sb = new StringBuilder();
             sb.append("Here are the tasks in your list:\n");
             for (int i = 0; i < taskList.size(); i++) {
-                sb.append((i + 1) + ". " + taskList.get(i) + "\n");
+                sb.append(i + 1).append(". ").append(taskList.get(i)).append("\n");
             }
             response = sb.toString().trim();
         }

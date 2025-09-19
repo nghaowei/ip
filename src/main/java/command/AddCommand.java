@@ -10,7 +10,7 @@ import task.Todo;
 import ui.Ui;
 
 /**
- * Represents the add command.
+ * Adds a new task (Todo, Deadline, Event) to the task list.
  */
 public class AddCommand extends Command {
 
@@ -52,7 +52,10 @@ public class AddCommand extends Command {
         } else if (description.startsWith("event ")) {
             // Example: "event team meeting /at 2025-09-05 14:00"
             String[] parts = description.substring(6).split(" /from | /to ", 3);
-            if (parts.length < 3 || parts[0].trim().isEmpty() || parts[1].trim().isEmpty() || parts[2].trim().isEmpty()) {
+            if (parts.length < 3
+                    || parts[0].trim().isEmpty()
+                    || parts[1].trim().isEmpty()
+                    || parts[2].trim().isEmpty()) {
                 throw new GenieweenieException("Event must have a description, /from start and /to end time!");
             }
             task = new Events(parts[0].trim(), parts[1].trim(), parts[2].trim());

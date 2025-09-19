@@ -2,6 +2,7 @@ package command;
 
 import exception.GenieweenieException;
 import storage.Storage;
+import task.Task;
 import task.TaskList;
 import ui.Ui;
 
@@ -11,7 +12,7 @@ import ui.Ui;
 public class ExitCommand extends Command {
 
     @Override
-    public void execute(TaskList tasks) {    }
+    public void execute(TaskList tasks) {}
 
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws GenieweenieException {
@@ -20,7 +21,7 @@ public class ExitCommand extends Command {
 
         // Save tasks to storage
         try {
-            storage.save(tasks.getTasks().toArray(new task.Task[0]));
+            storage.save(tasks.getTasks().toArray(new Task[0]));
         } catch (Exception e) {
             throw new GenieweenieException("Failed to save tasks on exit: " + e.getMessage());
         }

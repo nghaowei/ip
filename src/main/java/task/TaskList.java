@@ -27,37 +27,81 @@ public class TaskList {
         this.tasks = new ArrayList<>();
     }
 
+    /**
+     * Adds a task to the list.
+     *
+     * @param task the task to add
+     */
     public void addTask(Task task) {
         tasks.add(task);
     }
 
+    /**
+     * Adds a task to the list (alternate method).
+     *
+     * @param task the task to add
+     */
     public void add(Task task) {
         assert task != null : "Task to add should not be null";
         tasks.add(task);
     }
 
+    /**
+     * Retrieves a task at a given index.
+     *
+     * @param index the index (0-based)
+     * @return the task
+     */
     public Task getTask(int index) {
         assert index >= 0 && index < tasks.size() : "Index " + index + " is invalid";
         return tasks.get(index);
     }
 
+    /**
+     * Retrieves a task at a given index (alternate method).
+     *
+     * @param index the index (0-based)
+     * @return the task
+     */
     public Task get(int index) {
         return tasks.get(index);
     }
 
+    /**
+     * Deletes and returns a task at a given index.
+     *
+     * @param index the index (0-based)
+     * @return the removed task
+     */
     public Task deleteTask(int index) {
         assert index >= 0 && index < tasks.size() : "Index " + index + " is invalid for delete";
         return tasks.remove(index);
     }
 
+    /**
+     * Returns the number of tasks in the list.
+     *
+     * @return the size of the task list
+     */
     public int size() {
         return tasks.size();
     }
 
+    /**
+     * Returns the underlying list of tasks.
+     *
+     * @return the list of tasks
+     */
     public ArrayList<Task> getTasks() {
         return tasks;
     }
 
+    /**
+     * Finds tasks that contain a keyword in their description.
+     *
+     * @param keyword the keyword to search
+     * @return list of matching tasks
+     */
     public ArrayList<Task> findTasks(String keyword) {
         assert keyword != null && !keyword.isEmpty() : "Keyword should not be null or empty";
         ArrayList<Task> matching = new ArrayList<>();

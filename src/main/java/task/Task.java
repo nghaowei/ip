@@ -14,7 +14,6 @@ public class Task {
     /** Whether the task is done. */
     protected boolean isDone;
 
-
     /**
      * Creates a new Task.
      *
@@ -25,6 +24,14 @@ public class Task {
         this.isDone = false;
     }
 
+    /**
+     * Checks whether the task is marked as done.
+     *
+     * @return true if the task is done, false otherwise
+     */
+    public boolean isDone() {
+        return this.isDone;
+    }
 
     /**
      * Marks the task as done.

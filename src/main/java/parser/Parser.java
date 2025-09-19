@@ -1,6 +1,13 @@
 package parser;
 
-import command.*;
+import command.AddCommand;
+import command.Command;
+import command.DeleteCommand;
+import command.ExitCommand;
+import command.FindCommand;
+import command.ListCommand;
+import command.MarkCommand;
+import command.UnmarkCommand;
 import exception.GenieweenieException;
 
 /**
@@ -64,7 +71,8 @@ public class Parser {
      */
     private static Command parseIndexCommand(String[] parts, String commandType) throws GenieweenieException {
         if (parts.length < 2 || parts[1].trim().isEmpty()) {
-            throw new GenieweenieException("eep! I need a task number after '" + commandType + "'. Try: " + commandType + " 1");
+            throw new GenieweenieException("eep! I need a task number after '" + commandType
+                    + "'. Try: " + commandType + " 1");
         }
         try {
             int index = Integer.parseInt(parts[1].trim());
