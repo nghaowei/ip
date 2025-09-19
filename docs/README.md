@@ -36,4 +36,4 @@ Welcome to **GenieWeenie**, your personal task management chatbot!
 - Use descriptive task names for better searching.
 
 ## Screenshot
-The above screenshot shows GenieWeenie fully populated with tasks and ready to use.
+The above screenshot shows GenieWeenie populated with tasks and ready to use.
