@@ -16,11 +16,6 @@ public class MarkCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tasks) {
-        // Not used with this version
-    }
-
-    @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws GenieweenieException {
         try {
             tasks.getTask(index - 1).markAsDone();

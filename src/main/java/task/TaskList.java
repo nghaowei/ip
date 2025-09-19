@@ -2,6 +2,8 @@ package task;
 
 import java.util.ArrayList;
 
+import exception.GenieweenieException;
+
 /**
  * Represents a list of tasks.
  * Provides operations to add, retrieve, delete, and inspect tasks.
@@ -41,8 +43,10 @@ public class TaskList {
      *
      * @param task the task to add
      */
-    public void add(Task task) {
-        assert task != null : "Task to add should not be null";
+    public void add(Task task) throws GenieweenieException {
+        if (task == null) {
+            throw new GenieweenieException("Cannot add null task.");
+        }
         tasks.add(task);
     }
 
@@ -52,8 +56,10 @@ public class TaskList {
      * @param index the index (0-based)
      * @return the task
      */
-    public Task getTask(int index) {
-        assert index >= 0 && index < tasks.size() : "Index " + index + " is invalid";
+    public Task getTask(int index) throws GenieweenieException {
+        if (index < 0 || index >= tasks.size()) {
+            throw new GenieweenieException("Invalid task number: " + (index + 1));
+        }
         return tasks.get(index);
     }
 
@@ -73,8 +79,10 @@ public class TaskList {
      * @param index the index (0-based)
      * @return the removed task
      */
-    public Task deleteTask(int index) {
-        assert index >= 0 && index < tasks.size() : "Index " + index + " is invalid for delete";
+    public Task deleteTask(int index) throws GenieweenieException {
+        if (index < 0 || index >= tasks.size()) {
+            throw new GenieweenieException("Invalid task number: " + (index + 1));
+        }
         return tasks.remove(index);
     }
 
@@ -118,9 +126,8 @@ public class TaskList {
      *
      * @param index index of the task (0-based)
      */
-    public void markTask(int index) {
-        Task task = getTask(index);
-        task.markAsDone();
+    public void markTask(int index) throws GenieweenieException {
+        getTask(index).markAsDone();
     }
 
     /**
@@ -128,8 +135,7 @@ public class TaskList {
      *
      * @param index index of the task (0-based)
      */
-    public void unmarkTask(int index) {
-        Task task = getTask(index);
-        task.markAsNotDone();
+    public void unmarkTask(int index) throws GenieweenieException {
+        getTask(index).markAsNotDone();
     }
 }

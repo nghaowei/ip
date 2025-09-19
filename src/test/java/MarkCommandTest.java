@@ -44,10 +44,5 @@ public class MarkCommandTest {
         public StorageStub() {
             super("stub.txt"); // or any dummy file path
         }
-
-        @Override
-        public void save(task.Task[] tasks) {
-            // do nothing
-        }
     }
 }

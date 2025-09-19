@@ -71,4 +71,14 @@ public class Task {
     public String toString() {
         return "[" + getStatusIcon() + "] " + description;
     }
+
+    /**
+     * Returns a formatted string for saving this task to file.
+     *
+     * @return formatted string in "TYPE | DONE | DESCRIPTION ..." format
+     */
+    public String toSaveFormat() {
+        // Default (should be overridden by subclasses)
+        return "? | " + (isDone ? "1" : "0") + " | " + description;
+    }
 }

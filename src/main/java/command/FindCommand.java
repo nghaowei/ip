@@ -24,11 +24,6 @@ public class FindCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tasks) {
-        // Not used with this version
-    }
-
-    @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws GenieweenieException {
         ArrayList<Task> matches = tasks.findTasks(keyword);
         if (matches.isEmpty()) {

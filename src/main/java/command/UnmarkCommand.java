@@ -21,19 +21,10 @@ public class UnmarkCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tasks) {
-        // Not used with this version
-    }
-
-    @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws GenieweenieException {
-        try {
-            tasks.getTask(index - 1).markAsNotDone();
-            response = "OK, I've marked this task as not done yet:\n  "
-                    + tasks.getTask(index - 1);
-            return response;
-        } catch (IndexOutOfBoundsException e) {
-            throw new GenieweenieException("Invalid task number: " + index);
-        }
+        tasks.unmarkTask(index - 1);
+        response = "OK, I've marked this task as not done yet:\n  "
+                + tasks.getTask(index - 1);
+        return response;
     }
 }

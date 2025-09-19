@@ -42,7 +42,7 @@ public class GenieWeenie {
         storage = new Storage(filePath);
         Task[] loadedTasks = new Task[0];
         try {
-            loadedTasks = storage.load();
+            loadedTasks = storage.load().toArray(new Task[0]);
         } catch (IOException e) {
             e.printStackTrace();
         } catch (GenieweenieException e) {
@@ -99,5 +99,4 @@ public class GenieWeenie {
     public String getCommandType() {
         return commandType;
     }
-
 }

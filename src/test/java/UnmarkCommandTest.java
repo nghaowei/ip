@@ -19,7 +19,7 @@ public class UnmarkCommandTest {
      * Ensures that unmarking with an invalid index throws a GenieweenieException.
      */
     @Test
-    public void execute_invalidIndex_throwsGenieweenieException() {
+    public void executeInvalidIndexThrowsGenieweenieException() {
         TaskList tasks = new TaskList();
         UnmarkCommand command = new UnmarkCommand(1); // invalid since list is empty
         assertThrows(GenieweenieException.class, () -> command.execute(tasks, new Ui(),
@@ -30,7 +30,7 @@ public class UnmarkCommandTest {
      * Ensures that a task is unmarked when a valid index is provided.
      */
     @Test
-    public void execute_validIndex_unmarksTaskSuccessfully() throws GenieweenieException {
+    public void executeValidIndexUnmarksTaskSuccessfully() throws GenieweenieException {
         TaskList tasks = new TaskList();
         Todo todo = new Todo("Finish homework");
         todo.markAsDone();

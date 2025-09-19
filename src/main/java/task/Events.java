@@ -94,4 +94,11 @@ public class Events extends Task {
                 + " (from: " + start.format(FORMATTER)
                 + " to: " + end.format(FORMATTER) + ")";
     }
+
+    @Override
+    public String toSaveFormat() {
+        return "E | " + (isDone ? "1" : "0") + " | " + description
+                + " | " + start.format(FORMATTER)
+                + " | " + end.format(FORMATTER);
+    }
 }

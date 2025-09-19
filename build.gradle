@@ -77,3 +77,9 @@ shadowJar {
     archiveClassifier.set("") // removes the -all suffix
     archiveVersion.set("")    // removes version from filename
 }
+
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(17))
+    }
+}

@@ -14,11 +14,6 @@ import ui.Ui;
 public class ListCommand extends Command {
 
     @Override
-    public void execute(TaskList tasks) {
-        // Not used with this version
-    }
-
-    @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws GenieweenieException {
         List<Task> taskList = tasks.getTasks();
         if (taskList.isEmpty()) {

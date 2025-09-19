@@ -1,5 +1,7 @@
 package command;
 
+import java.util.List;
+
 import exception.GenieweenieException;
 import storage.Storage;
 import task.Task;
@@ -12,16 +14,13 @@ import ui.Ui;
 public class ExitCommand extends Command {
 
     @Override
-    public void execute(TaskList tasks) {}
-
-    @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws GenieweenieException {
         // Store goodbye message in response
         response = ui.showGoodbye();
 
         // Save tasks to storage
         try {
-            storage.save(tasks.getTasks().toArray(new Task[0]));
+            storage.save(List.of(tasks.getTasks().toArray(new Task[0])));
         } catch (Exception e) {
             throw new GenieweenieException("Failed to save tasks on exit: " + e.getMessage());
         }

@@ -12,8 +12,6 @@ public abstract class Command {
 
     protected String response; // stores the output of the command
 
-    public abstract void execute(TaskList tasks);
-
     /**
      * Executes the command.
      *
@@ -23,7 +21,6 @@ public abstract class Command {
      * @throws GenieweenieException if execution fails
      */
     public abstract String execute(TaskList tasks, Ui ui, Storage storage) throws GenieweenieException;
-
 
     /**
      * Checks if command is an exit command.
@@ -38,5 +35,4 @@ public abstract class Command {
     public String getResponse() {
         return response;
     }
-
 }

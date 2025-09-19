@@ -18,8 +18,8 @@ public class DeadlineTest {
      */
     @Test
     public void toString_validDate_success() throws GenieweenieException {
-        Deadline d = new Deadline("submit ip", "2025-08-28");
-        assertEquals("[D][ ] submit ip (by: Aug 28 2025)", d.toString());
+        Deadline d = new Deadline("submit ip", "2026-08-28");
+        assertEquals("[D][ ] submit ip (by: Aug 28 2026)", d.toString());
     }
 
 
