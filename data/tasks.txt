@@ -1,2 +1,1 @@
-[T][ ] CS2103 ip
-[D][ ] Get familiar with tp Codebase (by: Sep 20 2025)
+T | 0 | pen
